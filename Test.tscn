@@ -1,15 +1,23 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="NavigationPolygon" id=3]
-vertices = PoolVector2Array( 0, 0, 1024, 0, 1024, 600, 0, 600 )
+vertices = PoolVector2Array( 1024, 600, 0, 600, 0, 0, 1024, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 0, 0, 1024, 0, 1024, 600, 0, 600 ) ]
+outlines = [ PoolVector2Array( 1024, 600, 0, 600, 0, 0, 1024, 0 ) ]
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 15.0
 height = 50.0
 
 [node name="Test" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
@@ -24,8 +32,22 @@ position = Vector2( 80, 40 )
 shape = SubResource( 2 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 720, 280 )
+position = Vector2( 720, 408 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( -176, 192 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 680, 136 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( -176, 192 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2( 1200, 136 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
 position = Vector2( -176, 192 )
 shape = SubResource( 2 )
