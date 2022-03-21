@@ -3,6 +3,7 @@ extends EditorInspectorPlugin
 var undo_redo
 var bitmap_generator = preload("res://addons/godot_navigation2d_generator_plugin/bitmap_generator.gd").new()
 var precision = 2.0
+var actor_radius = 10.0
 
 
 func can_handle(object):
@@ -25,9 +26,22 @@ func parse_category(object: Object, category: String) -> void:
 		spin_slider.connect("value_changed", self, "_update_precision")
 		add_custom_control(spin_slider)
 
+		var actor_spin_slider = EditorSpinSlider.new()
+		actor_spin_slider.label = "Actor Radius"
+		actor_spin_slider.value = actor_radius
+		actor_spin_slider.max_value = 1000.0
+		actor_spin_slider.min_value = 0.0
+		actor_spin_slider.step = 0.1
+		actor_spin_slider.connect("value_changed", self, "_update_actor_radius")
+		add_custom_control(actor_spin_slider)
+
 
 func _update_precision(value: float) -> void:
 	precision = value
+
+
+func _update_actor_radius(value: float) -> void:
+	actor_radius = value
 
 
 func _generate(navpoly_instance: NavigationPolygonInstance) -> void:
@@ -44,10 +58,21 @@ func _generate(navpoly_instance: NavigationPolygonInstance) -> void:
 	var shapes = []
 	bitmap_generator.get_nodes_recursive("CollisionShape2D", scene_root, shapes)
 
+	# Add actor radius
+	var transformed_shapes = []
+	for collision_shape in shapes:
+		var new_shape = TransformedShape2D.new()
+		new_shape.shape = _scale_shape(collision_shape)
+		new_shape.transform = collision_shape.global_transform
+		transformed_shapes.push_back(new_shape)
+#		print(shapes[collision_shape].shape.radius)
+#		shapes[collision_shape].shape = _scale_shape(shapes[collision_shape])
+#		print(shapes[collision_shape].shape.radius)
+
 	# Generate bitmap
 	var bounds = bitmap_generator.get_polygon_bounds(main_outline)
 	var root_node = navpoly_instance.get_tree().get_root()
-	var function_state = bitmap_generator.generate_bitmap(root_node, bounds, shapes)
+	var function_state = bitmap_generator.generate_bitmap(root_node, bounds, transformed_shapes)
 	var bitmap: BitMap = yield(function_state, "completed")
 
 	# Create outlines
@@ -95,3 +120,11 @@ func _generate(navpoly_instance: NavigationPolygonInstance) -> void:
 	undo_redo.add_do_property(navpoly_instance, "navpoly", working_navpoly)
 	undo_redo.add_undo_property(navpoly_instance, "navpoly", navpoly_instance.navpoly)
 	undo_redo.commit_action()
+
+
+func _scale_shape(collision_shape: CollisionShape2D) -> Shape2D:
+	var shape := collision_shape.shape.duplicate(true) as Shape2D
+	match shape.get_class():
+		"CapsuleShape2D":
+			shape.radius += actor_radius * 2
+	return shape

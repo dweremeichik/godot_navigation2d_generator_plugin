@@ -10,7 +10,6 @@ func generate_bitmap(root_node: Node, bounds: Array, shapes: Array) -> BitMap:
 	root_node.add_child(viewport)
 	viewport.owner = root_node
 	var size = Vector2(bounds[1].x - bounds[0].x, bounds[1].y - bounds[0].y)
-	print(size)
 	viewport.size = size
 	viewport.gui_disable_input = true
 	viewport.transparent_bg = true
