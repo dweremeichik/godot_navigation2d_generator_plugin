@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 1024, 600, 0, 600, 0, 0, 1024, 0 )
@@ -8,6 +8,10 @@ outlines = [ PoolVector2Array( 1024, 600, 0, 600, 0, 0, 1024, 0 ) ]
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 15.0
 height = 50.0
+
+[sub_resource type="CircleShape2D" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
 
 [node name="Test" type="Node2D"]
 
@@ -29,6 +33,34 @@ position = Vector2( 0, -40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 80, 40 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2( 104, 384 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2( 80, 40 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2( 128, 248 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2( 80, 40 )
+shape = SubResource( 5 )
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="."]
+position = Vector2( 304, 80 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D8"]
+polygon = PoolVector2Array( 24, 24, -32, 32, -40, -16, 16, -8 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2( 400, 264 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2( 80, 40 )
+rotation = 1.57079
 shape = SubResource( 2 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]

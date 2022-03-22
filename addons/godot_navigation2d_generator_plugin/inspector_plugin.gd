@@ -126,5 +126,10 @@ func _scale_shape(collision_shape: CollisionShape2D) -> Shape2D:
 	var shape := collision_shape.shape.duplicate(true) as Shape2D
 	match shape.get_class():
 		"CapsuleShape2D":
-			shape.radius += actor_radius * 2
+			shape.radius += actor_radius
+		"CircleShape2D":
+			shape.radius += actor_radius
+		"RectangleShape2D":
+			shape.extents.x += actor_radius
+			shape.extents.y += actor_radius
 	return shape
