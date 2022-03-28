@@ -56,7 +56,9 @@ func _generate(navpoly_instance: NavigationPolygonInstance) -> void:
 	# Get collision shape2ds:
 	var scene_root = navpoly_instance.get_tree().get_edited_scene_root()
 	var shapes = []
+	var polygons = []
 	bitmap_generator.get_nodes_recursive("CollisionShape2D", scene_root, shapes)
+	bitmap_generator.get_nodes_recursive("CollisionPolygon2D", scene_root, polygons)
 
 	# Add actor radius
 	var transformed_shapes = []
@@ -65,6 +67,16 @@ func _generate(navpoly_instance: NavigationPolygonInstance) -> void:
 		new_shape.shape = _scale_shape(collision_shape)
 		new_shape.transform = collision_shape.global_transform
 		transformed_shapes.push_back(new_shape)
+
+	for collision_polygon in polygons:
+		var new_polygons = Geometry.offset_polygon_2d(collision_polygon.polygon, actor_radius)
+		if new_polygons.size() > 1:
+			push_warning("Polygon " + collision_polygon.name + " split when scailing.")
+		var new_shape = TransformedShape2D.new()
+		new_shape.polygon = new_polygons[0]
+		new_shape.transform = collision_polygon.global_transform
+		transformed_shapes.push_back(new_shape)
+
 #		print(shapes[collision_shape].shape.radius)
 #		shapes[collision_shape].shape = _scale_shape(shapes[collision_shape])
 #		print(shapes[collision_shape].shape.radius)
