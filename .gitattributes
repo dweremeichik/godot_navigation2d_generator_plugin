@@ -7,5 +7,5 @@
 /.gitignore         export-ignore
 /README.md          export-ignore
 /project.godot      export-ignore
-/scenes				export-ignore
+/demo				export-ignore
 /asset_lib			export-ignore
