@@ -17,7 +17,32 @@ height = 50.0
 
 [node name="Test" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="LabelCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="LabelCanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -96.0
+margin_right = 96.0
+margin_bottom = 16.0
+color = Color( 0.953125, 0.647607, 0.064346, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LabelCanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -90.0
+margin_top = 1.0
+margin_right = 90.0
+margin_bottom = 15.0
+text = "Click to add a new end point"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundColorRect" type="ColorRect" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
 mouse_filter = 2
