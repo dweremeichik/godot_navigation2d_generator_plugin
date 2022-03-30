@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="NavigationPolygon" id=6]
+vertices = PoolVector2Array( 529, 234, 520, 248, 519, 248, 228, 245, 228, 204, 497, 114, 201, 116, 204, 110, 483, 104, 187, 204, 529, 96, 530, 47, 640, 0, 640, 64, 567, 243, 530, 33, 483, 102, 204, 98, 479, 96, 518, 280, 0, 280, 188, 245, 0, 64, 187, 244, 497, 14, 497, 15, 448, 15, 384, 0, 1024, 64, 1024, 280, 569, 280, 567, 246, 188, 244, 178, 124, 167, 116, 478, 66, 479, 89, 455, 66, 443, 63, 434, 55, 443, 62, 384, 64, 528, 96, 525, 104, 524, 104, 511, 114, 526, 27, 526, 25, 203, 110, 434, 25, 431, 33, 430, 33, 556, 232, 178, 84, 178, 85, 174, 87, 172, 87, 537, 230, 537, 231, 531, 234, 201, 92, 190, 85, 190, 84, 165, 98, 164, 98, 516, 17, 516, 16, 435, 25, 430, 47, 434, 53, 201, 94, 556, 233, 200, 116, 190, 124, 167, 114, 164, 110 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 6, 7, 8, 5, 4, 9 ), PoolIntArray( 10, 11, 12, 13, 14 ), PoolIntArray( 12, 11, 15 ), PoolIntArray( 16, 8, 7, 17, 18 ), PoolIntArray( 3, 2, 19, 20, 21 ), PoolIntArray( 21, 20, 22, 23 ), PoolIntArray( 24, 25, 26, 27 ), PoolIntArray( 13, 28, 29, 30, 31, 14 ), PoolIntArray( 23, 32, 21 ), PoolIntArray( 33, 9, 23, 22, 34 ), PoolIntArray( 35, 36, 18, 17, 37 ), PoolIntArray( 38, 37, 17 ), PoolIntArray( 39, 40, 38, 17, 41 ), PoolIntArray( 42, 10, 14, 43 ), PoolIntArray( 44, 43, 14, 45 ), PoolIntArray( 12, 15, 46, 47 ), PoolIntArray( 6, 48, 7 ), PoolIntArray( 49, 50, 51 ), PoolIntArray( 5, 45, 14, 52 ), PoolIntArray( 53, 54, 55, 56, 22 ), PoolIntArray( 5, 57, 58, 59, 0 ), PoolIntArray( 60, 61, 62, 41 ), PoolIntArray( 56, 63, 64, 22 ), PoolIntArray( 47, 65, 66, 12 ), PoolIntArray( 27, 12, 66, 24 ), PoolIntArray( 27, 26, 67, 49 ), PoolIntArray( 41, 27, 49, 51 ), PoolIntArray( 41, 51, 68 ), PoolIntArray( 41, 68, 69, 39 ), PoolIntArray( 41, 17, 70, 60 ), PoolIntArray( 14, 71, 52 ), PoolIntArray( 5, 52, 57 ), PoolIntArray( 72, 6, 9, 73 ), PoolIntArray( 33, 73, 9 ), PoolIntArray( 74, 34, 22, 75 ), PoolIntArray( 64, 75, 22 ), PoolIntArray( 22, 41, 62, 53 ) ]
+outlines = [ PoolVector2Array( 640, 64, 1024, 64, 1024, 280, 569, 280, 567, 246, 567, 243, 556, 233, 556, 232, 537, 230, 537, 231, 531, 234, 529, 234, 520, 248, 519, 248, 518, 280, 0, 280, 0, 64, 384, 64, 384, 0, 640, 0 ), PoolVector2Array( 497, 15, 448, 15, 435, 25, 434, 25, 431, 33, 430, 33, 430, 47, 434, 53, 434, 55, 443, 62, 443, 63, 455, 66, 478, 66, 479, 89, 479, 96, 483, 102, 483, 104, 497, 114, 511, 114, 524, 104, 525, 104, 528, 96, 529, 96, 530, 47, 530, 33, 526, 27, 526, 25, 516, 17, 516, 16, 497, 14 ), PoolVector2Array( 178, 85, 174, 87, 172, 87, 165, 98, 164, 98, 164, 110, 167, 114, 167, 116, 178, 124, 190, 124, 200, 116, 201, 116, 203, 110, 204, 110, 204, 98, 201, 94, 201, 92, 190, 85, 190, 84, 178, 84 ), PoolVector2Array( 187, 244, 188, 244, 188, 245, 228, 245, 228, 204, 187, 204 ) ]
+
+[sub_resource type="CircleShape2D" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 15.0
+height = 50.0
+
+[node name="BottomNavigationPolygonInstance" type="NavigationPolygonInstance"]
+navpoly = SubResource( 6 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2( 104, 64 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2( 80, 40 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2( 128, 184 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2( 80, 40 )
+shape = SubResource( 5 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 720, 88 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( -176, 192 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 680, -128 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( -176, 192 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2( 400, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2( 80, 40 )
+rotation = 1.57079
+shape = SubResource( 2 )
