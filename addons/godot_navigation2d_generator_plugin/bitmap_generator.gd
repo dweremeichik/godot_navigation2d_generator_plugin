@@ -43,11 +43,13 @@ func generate_bitmap(root_node: Node, bounds: Array, shapes: Array) -> BitMap:
 	return bitmap
 
 
-func get_nodes_recursive(type: String, node: Node, array: Array) -> void:
+func get_nodes_recursive(type: String, node: Node, array: Array, exclusion_group: String = "") -> void:
 	for child in node.get_children():
 		if child.is_class(type):
-			array.append(child)
-		get_nodes_recursive(type, child, array)
+			# Check to see if the node is excluded
+			if exclusion_group == "" or !child.get_groups().has(exclusion_group):
+				array.append(child)
+		get_nodes_recursive(type, child, array, exclusion_group)
 
 
 func get_polygon_bounds(polygon: PoolVector2Array) -> Array:

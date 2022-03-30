@@ -18,6 +18,8 @@ To use this plugin simply enable it, you can find the official instructions [her
 * Create the desired "base" polygon shape (this is usually the shape of a room or area in your game). 
 * Set the "Precision" which corisponds to the number of verticies that will be used to create the cutouts. Smaller numbers result in more verticies.
 * Set the "Actor Radius" which corrisponds to the collision shape radius of your AI (or "Actors") that will be using this navigation polygon. This will add padding to your collision shapes as Navigation2D does not normally take this into account.
+* Any CollisionShape2Ds or CollisionPolygon2Ds that you want to ignore need to have the "exclude_navmesh" group added to them.
+* Click the generate button.
 
 > Note: This plugin supports undo/redo so feel free to fiddle with settings!
 

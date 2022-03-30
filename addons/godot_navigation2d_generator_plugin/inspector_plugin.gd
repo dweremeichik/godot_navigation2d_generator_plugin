@@ -53,12 +53,12 @@ func _generate(navpoly_instance: NavigationPolygonInstance) -> void:
 	working_navpoly.clear_outlines()
 	working_navpoly.clear_polygons()
 
-	# Get collision shape2ds:
+	# Get collision shape2ds, exclude nodes in "exclude_navmesh" group:
 	var scene_root = navpoly_instance.get_tree().get_edited_scene_root()
 	var shapes = []
 	var polygons = []
-	bitmap_generator.get_nodes_recursive("CollisionShape2D", scene_root, shapes)
-	bitmap_generator.get_nodes_recursive("CollisionPolygon2D", scene_root, polygons)
+	bitmap_generator.get_nodes_recursive("CollisionShape2D", scene_root, shapes, "exclude_navmesh")
+	bitmap_generator.get_nodes_recursive("CollisionPolygon2D", scene_root, polygons, "exclude_navmesh")
 
 	# Add actor radius
 	var transformed_shapes = []
